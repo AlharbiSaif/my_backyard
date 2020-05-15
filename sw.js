@@ -18,7 +18,7 @@ self.addEventListener('install', function(event) {
 				//Naif-sh added
 				"weather/weather.html",
 				"weather/weather.js",
-				"weather/weather.css"
+				"weather/weather.css",
 				//Ahmed added
 				"./img/favicon.ico",
 				"./shopping/shopping.html",
