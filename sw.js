@@ -8,10 +8,10 @@ self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open(OFFLINE_CACHE).then(function(cache) {
 			return cache.addAll([
-				'./',
+				"./",
 				"./index.html",
 				"./index.js",
-				"./img/icon.png",
+				"./img/",
 				"./style.css",
 				"./manifest.json",
 				"./jquery-3.4.1.js",
