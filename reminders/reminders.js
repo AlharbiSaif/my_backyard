@@ -1,3 +1,9 @@
+//it request permission in browser
+if (Notification.requestPermission(result => {
+
+})){}
+
+
 let reminderList = $('#reminder-list')
 let addForm = $('#add-form')
 let editForm = $('#edit-form')
