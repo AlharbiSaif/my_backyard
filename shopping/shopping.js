@@ -1,3 +1,9 @@
+//it request permission in browser
+if (Notification.requestPermission(result => {
+
+})){}
+
+
 //bind components with UI
 
 let shoppingList = $('#shopping-list');
