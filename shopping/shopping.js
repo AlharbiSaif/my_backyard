@@ -28,18 +28,6 @@ let buttonAddItem = $('#button-add-item')
 let buttonEditDivider = $('#button-edit-divider')
 let buttonEditItem = $('#button-edit-item')
 
-
-//register service worker
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(function (registration) {
-        console.log(
-            'ServiceWorker registration successful with scope: ',
-            registration.scope
-        );
-    });
-}
-
-
 //initialize state from cache
 let cachedShoppingList = localStorage.getItem('shopping-list');
 
