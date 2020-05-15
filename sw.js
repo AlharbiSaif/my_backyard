@@ -30,9 +30,7 @@ self.addEventListener('install', function(event) {
 				"./reminders/reminders.html",
 				"./reminders/reminders.js",
 				"./css/themes/Try1.css",
-				"./css/themes/jquery.mobile.icons.min.css",
-				"./jquery.mobile-1.4.5.min.map",
-				"./css/themes/images/ajax-loader.gif"
+				"./jquery.mobile-1.4.5.min.map"
 
 			]);
 		})
