@@ -15,6 +15,9 @@ self.addEventListener('install', function(event) {
 				"./style.css",
 				"./manifest.json",
 				"./jquery-3.4.1.js",
+				"./flowers/flowers.html",
+				"./flowers/imageAnalysis.js",
+				"./flowers/style.css",
 				//Naif-sh added
 				"./weather/weather.html",
 				"./weather/weather.js",
