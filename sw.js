@@ -18,15 +18,15 @@ self.addEventListener('install', function(event) {
 				
 				//those resources are cached for Reminder
 			
-				"/reminders/reminders.html",
-				"/reminders/reminders.js",
-				"/css/themes/Try1.css",
-				"/css/themes/jquery.mobile.icons.min.css",
-				"/jquery.mobile-1.4.5.min.js",
-				"/jquery-1.11.1.min.js",
-				"/jquery.mobile.structure-1.4.5.min.css",
-				"/jquery.mobile-1.4.5.min.map",
-				"/css/themes/images/ajax-loader.gif"
+				"/my_backyard/reminders/reminders.html",
+				"/my_backyard/reminders/reminders.js",
+				"/my_backyard/css/themes/Try1.css",
+				"/my_backyard/css/themes/jquery.mobile.icons.min.css",
+				"/my_backyard/jquery.mobile-1.4.5.min.js",
+				"/my_backyard/jquery-1.11.1.min.js",
+				"/my_backyard/jquery.mobile.structure-1.4.5.min.css",
+				"/my_backyard/jquery.mobile-1.4.5.min.map",
+				"/my_backyard/css/themes/images/ajax-loader.gif"
 			]);
 		})
 	);
