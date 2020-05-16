@@ -42,7 +42,9 @@ const schedule = (entity) => {
         new Notification(
             `Do ${entity.activity}`,
             {
-                icon: '/img/icon.png',
+                icon: '/my_backyard/img/icon.png',
+                badge: '/my_backyard/img/icon.png',
+                image: '/my_backyard/img/icon.png',
 
             }
         )
