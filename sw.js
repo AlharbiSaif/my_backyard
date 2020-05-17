@@ -13,7 +13,7 @@ self.addEventListener('install', function(event) {
 				"./index.js",
 				"./img/icon.png",
 				"./style.css",
-				"./manifest.json",
+				"/my_backyard/manifest.json",
 				"/my_backyard/jquery-3.4.1.js"
 				
 				//those resources are cached for Reminder
