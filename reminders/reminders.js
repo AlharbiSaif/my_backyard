@@ -1,3 +1,4 @@
+//those are bound html elements to js code
 let reminderList = $('#reminder-list')
 let addForm = $('#add-form')
 let editForm = $('#edit-form')
@@ -18,40 +19,50 @@ const DAY_OF_WEEKS = {
     "Sat": 6
 }
 
+//it is initial state for reminders
 let reminderState = [
 ]
 
-
+//this function is triggered when you add reminder on add reminder form
 const addItem = (activity, day, hours, minutes) => {
-    let entity = {              
+    let entity = {              //create new reminder
         id: getRandomId(),
         activity: activity,
         day: day,
         hours: +hours,
         minutes: +minutes
     }
-    reminderState = reminderState.concat(entity)        
-    localStorage.setItem('reminderState', JSON.stringify(reminderState))  
-    schedule(entity)                                                        
-    render()                                                
-    reminderList.listview().listview('refresh');            
+    reminderState = reminderState.concat(entity)        //add reminder to state
+    localStorage.setItem('reminderState', JSON.stringify(reminderState))  //update local storage to save cache
+    schedule(entity)                                                        //this one schedule notification
+    render()                                                // this one apply convert reminder state to html
+    reminderList.listview().listview('refresh');            // this one specific for jquery ui component to update reminder list
 }
 
+//this function schedules notification in particular time. see findClosestSchedule
 const schedule = (entity) => {
+    //it triggers notification schedule
     entity.notification = setTimeout(() => {
-        new Notification(
-            `Do ${entity.activity}`,
-            {
-                icon: '/my_backyard/img/icon.png',
-                badge: '/my_backyard/img/icon.png',
-                image: '/my_backyard/img/icon.png',
-
+        Notification.requestPermission(function(result) {
+            if (result === 'granted') {
+                navigator.serviceWorker.ready.then(function(registration) {
+                    registration.showNotification(`Do ${entity.activity}`,
+                        {
+                            icon: '/test/img/icon.png',
+                            badge: '/test/img/icon.png',
+                            image: '/test/img/icon.png',
+                        });
+                });
             }
-        )
+        });
         reschedule(entity)
     }, findClosestSchedule(entity))
 }
 
+
+//it calculates the time of next notification
+//the key here is to find the real date of next Monday or Tuesday for example, create date object and after
+//do assumedDate - currentDate -> diff in milliseconds -> schedule in found time
 
 
 
@@ -88,18 +99,30 @@ const findClosestSchedule = (reminder) => {
     }
 }
 
-
+//this one reschedule notification directly in one week after first notification is triggered,
+//very easy, just calculate amount of millis in 7 days
 const reschedule = (entity) => {
     let interval = 1000 * 60 * 60 * 24 * 7
     console.log(interval)
     entity.notification = setTimeout(() => {
-        new Notification(`Do ${entity.activity}`)
+        Notification.requestPermission(function(result) {
+            if (result === 'granted') {
+                navigator.serviceWorker.ready.then(function(registration) {
+                    registration.showNotification(`Do ${entity.activity}`,
+                        {
+                            icon: '/test/img/icon.png',
+                            badge: '/test/img/icon.png',
+                            image: '/test/img/icon.png',
+                        });
+                });
+            }
+        });
         reschedule(entity)
     }, interval)
 }
 
 
-
+//this one triggers when you submit edit form
 const editItem = (id, activity, day, hours, minutes) => {
     reminderState = reminderState.map(item => {
             if (item.id === id) {
@@ -107,26 +130,28 @@ const editItem = (id, activity, day, hours, minutes) => {
                 item.day = day
                 item.hours = +hours
                 item.minutes = +minutes
-                clearTimeout(item.notification)     
+                clearTimeout(item.notification)    
                 item.notification = schedule(item)
             }
             return item
         }
     )
-    localStorage.setItem('reminderState', JSON.stringify(reminderState))  
+    localStorage.setItem('reminderState', JSON.stringify(reminderState))   
     render()                           
     reminderList.listview().listview('refresh');  
 }
+
 
 
 const deleteItem = (id) => {
     let itemToDelete = reminderState.find(item => item.id === id)
     clearTimeout(itemToDelete.notification)                         
     reminderState = reminderState.filter(item => item.id !== id)
-    localStorage.setItem('reminderState', JSON.stringify(reminderState))       
-    render()                                                                    
-    reminderList.listview('refresh')                                            
+    localStorage.setItem('reminderState', JSON.stringify(reminderState))        
+    render()                                                                   
+    reminderList.listview('refresh')                                         
 }
+
 
 addForm.submit(ev => {
     ev.preventDefault()
@@ -151,17 +176,23 @@ editForm.submit(ev => {
 })
 
 buttonAdd.click(() => {
+    Promise.resolve(Notification.requestPermission())
+        .then(function (permission) {
+        })
     addForm.submit()
 })
 
 buttonEdit.click(() => {
+    Promise.resolve(Notification.requestPermission())
+        .then(function (permission) {
+        })
     editForm.submit()
 })
 
 
 handleEdit = (id) => {
     let reminder = reminderState.find(item => item.id === id)
-    editId.val(reminder.id)                                         
+    editId.val(reminder.id)                                       
     $('input:radio[name=edit-activity]').each(function () {
         $(this).prop('checked', false);
         $(this).checkboxradio().checkboxradio("refresh")
@@ -169,17 +200,19 @@ handleEdit = (id) => {
     let element = $("input[name=edit-activity][value=" + reminder.activity + "]")
     element.prop('checked', true);
     element.checkboxradio().checkboxradio("refresh")
-    editDay.val(reminder.day).attr('selected', true).siblings('option').removeAttr('selected');     //expose day
+    editDay.val(reminder.day).attr('selected', true).siblings('option').removeAttr('selected');     
     editDay.selectmenu().selectmenu("refresh", true);
     editHours.val(formatTime(reminder.hours))           
     editMinutes.val(formatTime(reminder.minutes))
 }
 
 
+
 const reminderListComponent = (reminderState) => {
     let list = reminderState.map(item => `<li>${reminderListItem(item)}</li>`).join('')
     return `${list}`
 }
+
 
 const reminderListItem = (itemProps) => {
     return `
@@ -201,6 +234,7 @@ const reminderListItem = (itemProps) => {
         `
 }
 
+
 const formatTime = (timeUnit) => {
     let stringTimeUnit = timeUnit.toString()
     if(stringTimeUnit.length === 1) {
@@ -212,6 +246,7 @@ const formatTime = (timeUnit) => {
 const getRandomId = () => {
     return Math.floor(Math.random() * 100000000)
 }
+
 
 const render = () => {
     reminderList.html(reminderListComponent(reminderState))
@@ -225,5 +260,6 @@ if (savedItems) {
 } else {
     reminderState = []
 }
+
 
 render()
