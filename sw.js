@@ -10,7 +10,7 @@ self.addEventListener('install', function(event) {
 			return cache.addAll([
 				'./',
 				"./index.html",
-				"./index.js",
+				"/my_backyard/index.js",
 				"./img/icon.png",
 				"./style.css",
 				"/my_backyard/manifest.json",
