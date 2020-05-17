@@ -5,7 +5,7 @@
 if ('serviceWorker' in navigator) {
 
   navigator.serviceWorker
-      .register('/sw.js')
+      .register('/my_backyard/sw.js')
       .then(function (swReg) {
         console.log('Service Worker is registered', swReg);
       })
