@@ -9,10 +9,10 @@ self.addEventListener('install', function(event) {
 		caches.open(OFFLINE_CACHE).then(function(cache) {
 			return cache.addAll([
 				'./',
-				"./index.html",
+				"/my_backyard/index.html",
 				"/my_backyard/index.js",
-				"./img/icon.png",
-				"./style.css",
+				"/my_backyard/img/icon.png",
+				"/my_backyard/style.css",
 				"/my_backyard/manifest.json",
 				"/my_backyard/jquery-3.4.1.js"
 				
