@@ -110,9 +110,9 @@ const reschedule = (entity) => {
                 navigator.serviceWorker.ready.then(function(registration) {
                     registration.showNotification(`Do ${entity.activity}`,
                         {
-                            icon: '/test/img/icon.png',
-                            badge: '/test/img/icon.png',
-                            image: '/test/img/icon.png',
+                            icon: '/my_backyard/img/icon.png',
+                            badge: '/my_backyard/img/icon.png',
+                            image: '/my_backyard/img/icon.png',
                         });
                 });
             }
