@@ -13,6 +13,7 @@ self.addEventListener('install', function(event) {
 			return cache.addAll([
 				'./',
 				"./index.html",
+				"./index.js",
 				"./img/icon.png",
 				"./img/title.png",
 				"./style.css",
