@@ -30,9 +30,9 @@ self.addEventListener('install', function(event) {
 				"/my_backyard/jquery.mobile.structure-1.4.5.min.css",
 				"/my_backyard/jquery.mobile-1.4.5.min.map",
 				"/my_backyard/css/themes/images/ajax-loader.gif",
-				"weather/weather.html",
-               			"weather/weather.js",
-                                "weather/weather.css"	
+				"/my_backyard/weather/weather.html",
+               			"/my_backyard/weather/weather.js",
+                                "/my_backyard/weather/weather.css"	
 			]);
 		})
 	);
