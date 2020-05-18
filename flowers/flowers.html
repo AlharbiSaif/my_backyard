@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>My Backyard | Flowers</title>
-    <link rel="stylesheet" href="./style.css">
     <meta charset="UTF-8">
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="../manifest.json">
@@ -23,87 +22,66 @@
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/themes/Try1.css"/>
+    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css"/>
+    <link rel="stylesheet" href="../jquery.mobile.structure-1.4.5.min.css"/>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script src="../jquery.mobile-1.4.5.min.js"></script>
+
 
   </head>
 
 
-  <div class="fpage">
+  <body>
 
-
-    <div class="finput">
-        <!-- Insert text input for the image URL, with id="inputImage" -->
-        <!-- Use a label and an input element -->
-        <label for="inputImage">Enter URL:</label>
-        <input type="text" name="inputImage" id="inputImage" required />
+    <div id="overlay" onclick="off()">
+      <h2 id="text">123456</h2>
     </div>
+          <div data-role="page" id="Main">
+              <header data-role="header" data-theme="a">
+                  <h1>Flower Recognition</h1>
+                  <a onclick="window.location.href='../index.html';" class="ui-btn  ui-icon-home ui-btn-icon-notext">
+                      Home</a>
+              </header>
+              <div class="inner-body">
 
-    <div class="fbtn">
-        <!-- Insert a button that executes the JavaScript function analyzeButtonClick() when clicked -->
-        <button onclick="up()">Upload Image</button>
-        <button onclick="analyzeButtonClick()">Analyze Image</button>
+              <article data-role="content">
+                <button class="ui-btn" onclick="up()">Upload Image</button>
 
-    </div>
+                      <div class="fimg">
+                          <!-- Insert a button that executes the JavaScript function analyzeButtonClick() when clicked -->
+                          <canvas id="fcanvas"></canvas>
 
-    <div class="fimg">
-        <!-- Insert a button that executes the JavaScript function analyzeButtonClick() when clicked -->
-        <canvas id="fcanvas"></canvas>
+                      </div>
 
-    </div>
+              </article>
+              </div>
 
-    <div class="fresult">
-        <!-- Insert textarea with id="responseTextArea" for text output -->
-        <textarea id="responseTextArea"></textarea>
-    </div>
-  </div>
+              <footer data-role="footer" data-position="fixed" data-theme="a">
+                  <nav data-role="navbar" class="footer-navbar">
 
-  <i id="burger" class="material-icons" onclick="burger()">Menu</i>
-  <i id="quit" class="material-icons" onclick="quit()">Back</i>
-
-  <div id="links">
-    <a href="">Home</a>
-    <a href="">Reminders</a>
-    <a href="">Shopping</a>
-    <a href="">Weather</a>
-    <a href="">Wildlife</a>
-
-  </div>
-
-  </body>
+                  </nav>
 
 
-  <input hidden id='in' name="in" type="file">
+
+              </footer>
+
+          </div>
+
+      </body>
+
+      <input hidden id='in' name="in" type="file">
 
 
-  <script src="../jquery-3.4.1.js"></script>
-  <script src="imageAnalysis.js"></script>
-
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('../sw.js');
-    });
-  }
-  </script>
-
-
-  <script>
-  function burger(){
-    var burger = document.getElementById('burger');
-    var links = document.getElementById('links');
-    var quit = document.getElementById('quit');
-    burger.style.padding = '16px 16px 150vw 150vw';
-    links.style.display = 'flex';
-    quit.style.display = 'inline';
-  }
-
-  function quit(){
-    var burger = document.getElementById('burger');
-    var links = document.getElementById('links');
-    var quit = document.getElementById('quit');
-    burger.style.padding = '16px 16px 32px 32px';
-    links.style.display = 'none';
-    quit.style.display = 'none';
-  }
-  </script>
+      <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('../sw.js');
+        });
+      }
+      </script>
+      <script src="./imageAnalysis.js"></script>
 
   </html>

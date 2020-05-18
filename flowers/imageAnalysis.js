@@ -10,72 +10,6 @@
 // https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-yellow-flowering-plant-royalty-free-image-1575667390.jpg?crop=1xw:0.84375xh;center,top&resize=980:*
 // https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/flowers-royalty-free-image-997959716-1548454745.jpg?crop=1xw:1xh;center,top&resize=980:*
 // https://www.ikea.com/au/en/images/products/smycka-artificial-flower__0903311_PE596728_S5.JPG
-function analyzeButtonClick() {
-    // Retrieve the user-entered value of the image URL
-    let sourceImageUrl = $("#inputImage").val();
-    // Retrieve the user-entered value of the subscription key
-    let subscriptionKey = 'd73860db3f5c4ce0b22c77368c26cd54';
-    // Call the processing function, passing the user entered values
-    // as well as a reference to the output text area element
-    AnalyzeImage(subscriptionKey, sourceImageUrl, $("#responseTextArea"));
-}
-
-function AnalyzeImage(subscriptionKey, sourceImageUrl, responseTextArea) {
-    // Request parameters
-    let params = {
-        // Choose categories to analyze - see the documentation for reference
-        "visualFeatures": "Tags",
-        "details": "",
-        "language": "en",
-    };
-
-    // ... AJAX call to the Azure Cognitive Service for Computer Vision goes here ...
-    $.ajax({
-       // TODO: if needed, adapt the URL to the region where you created the service
-       url: "https://flowers.cognitiveservices.azure.com/vision/v2.0/analyze?" + $.param(params),
-       beforeSend: function(xhrObj){
-           // Request the output formatted as JSON
-           xhrObj.setRequestHeader("Content-Type","application/json");
-           // Send the subscription key as part of the header
-           xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subscriptionKey);
-       },
-       // Data is submitted to the server through a POST request
-       type: "POST",
-       // Request body: the image URL
-       data: '{"url": ' + '"' + sourceImageUrl + '"}',
-   })
-   .done(function(data) {
-       // Successful request: formate the result JSON in a human-friendly
-       // way and output it to the text area HTML element.
-       da = JSON.stringify(data, null, 2);
-       var obj = JSON.parse(da);
-       daa = JSON.stringify(obj, null, 2);
-
-       var res = obj.tags[0].name+"\n"+obj.tags[1].name+"\n"+ obj.tags[2].name;
-       console.log(res)
-
-      // var canvas = document.getElementById("responseTextArea");
-      // var ctx = canvas.getContext("2d");
-      // ctx.font = "30px sans-serif";
-      // ctx.fillStyle = "#548235";
-      // ctx.textAlign = "center";
-
-       //ctx.fillText(res, canvas.width/2, canvas.height/2);
-       responseTextArea.val(res);
-
-       alert("Success");
-   })
-   .fail(function(jqXHR, textStatus, errorThrown) {
-       // Error: print the error message to the text area HTML element.
-       responseTextArea.val(JSON.stringify(jqXHR, null, 2));
-       alert("Request Failed");
-   });
-}
-
-
-var fileUpload = document.getElementById('in');
-var canvas  = document.getElementById('fcanvas');
-var ctx = canvas.getContext("2d");
 
 function readImage() {
     if ( this.files && this.files[0] ) {
@@ -107,33 +41,23 @@ function readImage() {
     }
 }
 
+var fileUpload = document.getElementById('in');
+var canvas  = document.getElementById('fcanvas');
+var ctx = canvas.getContext("2d");
+
 function up() {
   fileUpload.click();
   fileUpload.onchange = readImage;
 
 }
 
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
 
 
 $(document).ready(function () {
@@ -169,42 +93,21 @@ $(document).ready(function () {
     }
 
     $('#in').change(function () {
-
-        //Load everything in
         var reader = new FileReader();
         var file = this.files[0];
-      //  var mb = $(this).serializeObject();
         console.log(file);
         reader.onload=  function() {
             var resultData = this.result;
-
-
-
-
-        //     console.log(resultData);
-
-
+            //console.log(resultData);
             resultData = resultData.split(',')[1];
-
-            processImage(resultData);
-           // processImage(mb);
-        };
-
-
+            processImage(resultData);};
         reader.readAsDataURL(file);
-
     });
 
     processImage = function(binaryImage) {
-
-
-
-
-     //   var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
-        var uriBase = "https://flowers.cognitiveservices.azure.com/vision/v2.0/analyze";
-
-        //    // Request parameters.
-        var params = {
+      //var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
+      var uriBase = "https://flowers.cognitiveservices.azure.com/vision/v2.0/analyze";
+      var params = {
           "visualFeatures": "Tags",
           "details": "",
           "language": "en",
@@ -218,7 +121,6 @@ $(document).ready(function () {
             beforeSend: function (xhrObj) {
                 xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", subKey);
 
-
             },
             contentType: "application/octet-stream",
             mime: "application/octet-stream",
@@ -228,22 +130,15 @@ $(document).ready(function () {
 
 
         }) .done(function(data) {
-           // Show formatted JSON on webpage.
            da = JSON.stringify(data, null, 2);
            var obj = JSON.parse(da);
            daa = JSON.stringify(obj, null, 2);
 
-           var res = obj.tags[0].name+"\n"+obj.tags[1].name+"\n"+ obj.tags[2].name;
+           var res = obj.tags[0].name+"\n"+obj.tags[1].name+"\n"+ obj.tags[2].name+"\n"+ obj.tags[3].name+"\n"+ obj.tags[4].name;
            console.log(res)
 
-           // var canvas = document.getElementById("responseTextArea");
-           // var ctx = canvas.getContext("2d");
-           // ctx.font = "30px sans-serif";
-           // ctx.fillStyle = "#548235";
-           // ctx.textAlign = "center";
-
-           //ctx.fillText(res, canvas.width/2, canvas.height/2);
-           $("#responseTextArea").val(res);
+           $("#text").text(res);
+           on();
 
            alert("Success");
          })

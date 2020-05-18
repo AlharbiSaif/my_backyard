@@ -6,28 +6,6 @@ html {
   background-color: white;
 }
 
-.finput{
-  position: relative;
-  display: flex;
-  justify: left;
-  width: 75vw;
-  margin-left: 1vw;
-  margin-right: 1vw;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2vh;
-  font-weight: bold;
-  text-align:center;
-  color: #548235;
-}
-.finput input{
-  font-size: 2vh;
-  font-weight: bold;
-  width: 95%;
-  color: #548235;
-  width: inherit;
-}
-
-
 .fbtn{
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -65,7 +43,7 @@ html {
   display: block;
 
   width: 90vw;
-  height: 65vh;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1vh;
@@ -76,87 +54,31 @@ html {
 
 .fimg canvas{
   width: 90vw;
-  height: 65vh;
+  height: 75vh;
   min-height: auto;
   min.width: auto;
 }
 
-.fresult{
-  display: block;
-  position: relative;
-  color: #548235;
-  border: 2px solid;
-  width: 90vw;
-  height: 13vh;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1vh;
-}
-
-.fresult textarea{
-  width: 90vw;
-  height: 13vh;
-  display: block;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: transparent;
-  border: none;
-  overflow: auto;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2vh;
-  text-align: center;
-  justify: center;
-  color: #548235;
-
-}
-
-
-
-
-
-
-#burger{
+#overlay {
   position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   right: 0;
-  top: 0;
-  color: white;
-  background: #548235;
-  font-size: 3vh;
-  height: 3vh;
-  padding: 1vh 1vh 2vh 2vh;
-  border-radius: 0% 0% 0% 0.5em;
-  transition: 0.5s;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
 }
 
-#quit{
-  position: fixed;
-  top: 0;
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
   color: white;
-  font-size: 3vh;
-  padding: 16px;
-  display: none;
-  cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
-}
-
-#links{
-  display: none;
-  position: relative;
-  flex-direction: column;
-  top: -80vh;
-  width: 100vw;
-  height: 60vh;
-  justify-content: space-around;
-}
-
-#links a{
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-size: 3vh;
-  font-family: 'Montserrat', sans-serif;
-  z-index: 10;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
 }
