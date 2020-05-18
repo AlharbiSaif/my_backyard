@@ -7,36 +7,28 @@ const OFFLINE_CACHE = `${PREFIX}-${HASH}`;
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open(OFFLINE_CACHE).then(function(cache) {
+			
+			
+			
 			return cache.addAll([
-				"./",
-				"./index.html",
-				"./index.js",
-				"./img/title.png",
-				"./img/icon.png",
-				"./style.css",
-				"./manifest.json",
-				"./jquery-3.4.1.js",
-				"./flowers/flowers.html",
-				"./flowers/imageAnalysis.js",
-				"./flowers/style.css",
-				//Naif-sh added
-				"./weather/weather.html",
-				"./weather/weather.js",
-				"./weather/weather.css",
-				//Ahmed added
-				"./img/favicon.ico",
-				"./shopping/shopping.html",
-				"./shopping/shopping.js",
-				"./jquery.mobile-1.4.5.min.js",
-				"./jquery-1.11.1.min.js",
-				"./jquery.mobile.structure-1.4.5.min.css",
-				"./css/themes/jquery.mobile.icons.min.css",
-				"./reminders/reminders.html",
-				"./reminders/reminders.js",
-				"./css/themes/Try1.css",
-				"./jquery.mobile-1.4.5.min.map",
-				"./css/themes/images/ajax-loader.gif"
-
+				'./',
+				"/my_backyard/index.html",
+				"/my_backyard/index.js",
+				"/my_backyard/img/icon.png",
+				"/my_backyard/style.css",
+				"/my_backyard/manifest.json",
+				"/my_backyard/jquery-3.4.1.js",
+				 "/my_backyard/shopping/shopping.html",
+                "/my_backyard/shopping/shopping.js",
+				"/my_backyard/reminders/reminders.html",
+				"/my_backyard/reminders/reminders.js",
+				"/my_backyard/css/themes/Try1.css",
+				"/my_backyard/css/themes/jquery.mobile.icons.min.css",
+				"/my_backyard/jquery.mobile-1.4.5.min.js",
+				"/my_backyard/jquery-1.11.1.min.js",
+				"/my_backyard/jquery.mobile.structure-1.4.5.min.css",
+				"/my_backyard/jquery.mobile-1.4.5.min.map",
+				"/my_backyard/css/themes/images/ajax-loader.gif"
 			]);
 		})
 	);
@@ -59,8 +51,7 @@ self.addEventListener('activate', function(event) {
 		})
 	);
 });
-//Orginal Christian 'fetch'
-/*
+
 self.addEventListener('fetch', function(event) {
 	if (event.request.mode == 'navigate') {
 		console.log('Handling fetch event for', event.request.url);
@@ -85,49 +76,24 @@ self.addEventListener('fetch', function(event) {
 	}
 
 });
-*/
-//Naif-sh edited 'fetch'
-self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-            if (event.request.url.includes('api.openweathermap.org')) {
-                return fetch(event.request)
-                    .then((response) => {
-                        return caches.open(OFFLINE_CACHE).then((cache) => {
-                            console.log(event.request.url)
-                            if (response.status === 200) {
-                                cache.put(event.request, response.clone());
-                            }
-                            return response;
-                        })
-                    })
-                    .catch(() => {
-                        if (response) {
-                            return response;
-                        }
-                    })
-            } else {
-                return response || fetch(event.request)
-            }
-        })
-    )
+
+//Saif 
+
+self.addEventListener('activate', function(event) {
+	// Delete old asset caches.
+	event.waitUntil(
+		self.clients.claim()
+	);
 });
 
-//Ahmed 'fetch'
-
-//activate service worker on the page where it is registered
-self.addEventListener('activate', function (event) {
-    console.info('Event: Activate');
-    event.waitUntil(
-        self.clients.claim()
-    );
-});
-
-//this is an interceptor for all fetch requests to your server, if somth available from cache it will be accessed from cache
-self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request).then(function (response) {
-            return response || fetch(event.request)
-        })
-    )
+//it is a middleware, when browser fetches resources, it always happens via this function
+self.addEventListener('fetch', function(event) {
+		event.respondWith(
+			caches.match(event.request).then(function(response) {
+				return response || fetch(event.request)
+					.catch(er => {
+						console.log(er)
+					});
+			})
+		);
 });
