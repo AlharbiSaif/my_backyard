@@ -22,28 +22,27 @@
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./weather.css" />
-    <link rel="stylesheet" href="./hamburger.css" />
+    <!-- <link rel="stylesheet" href="./hamburger.css" /> -->
     <link rel="stylesheet" href="./hover.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/themes/Try1.css"/>
+    <!-- <link rel="stylesheet" href="./style.css"/> -->
+    <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css"/>
+    <link rel="stylesheet" href="../jquery.mobile.structure-1.4.5.min.css"/>
+    <script src="../jquery-1.11.1.min.js"></script>
+    <script src="../jquery.mobile-1.4.5.min.js"></script>
+
 
   </head>
   <body>
-    <div class="hamburger-menu">
-      <input id="menu__toggle" type="checkbox" />
-      <label class="menu__btn" for="menu__toggle">
-        <span></span>
-      </label>
-      <div class="topnav menu__box">
-        <a class="menu__item" href="../index.html">Home</a>
-        <a class="menu__item" class="active" href="./weather.html">Weather</a>
-        <a class="menu__item" href="../wildlife/wildlife.html">Wildlife</a>
-        <a class="menu__item" href="../flowers/flowers.html">Flowers</a>
-        <a class="menu__item" href="../reminders/reminders.html">Reminders</a>
-        <a class="menu__item" href="../shopping/shopping.html">Shopping</a>
-      </div>
-    </div>
+    <div data-role="page" id="Main">
+      <header data-role="header" class="headerT" data-theme="a">
+          <h3>Weather</h3>
+          <a onclick="window.location.href='../index.html';" class="ui-btn  ui-icon-home ui-btn-icon-notext"> Home</a>
     <div class="search">
       <form id="search-form" class="search-form">
         <label>
@@ -52,11 +51,13 @@
                   id="search-city"
                   name="search-city"
                   class="search-field"
-                  placeholder="Search a city"
+                  placeholder="Search a city...."
           /></label>
         <!-- <input type="submit" value="&#x1F50E;" /> -->
       </form>
+      
     </div>
+  </header>
     <h1>TODAY</h1>
     <div class="today">
       <div id="current-weather-data" class="current-weather"></div>
