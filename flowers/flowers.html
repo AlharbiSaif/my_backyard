@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="../jquery.mobile.structure-1.4.5.min.css"/>
     <script src="../jquery-1.11.1.min.js"></script>
     <script src="../jquery.mobile-1.4.5.min.js"></script>
+    <script src="../jquery-3.4.1.js"></script>
+
 
 
   </head>
@@ -49,12 +51,10 @@
               <div class="inner-body">
 
               <article data-role="content">
-                <button class="ui-btn" onclick="up()">Upload Image</button>
+                <button class="btn" onclick="up()">Upload Image</button>
 
-                      <div class="fimg">
-                          <!-- Insert a button that executes the JavaScript function analyzeButtonClick() when clicked -->
+                      <div class="fimg" id="fimg">
                           <canvas id="fcanvas"></canvas>
-
                       </div>
 
               </article>
@@ -73,7 +73,7 @@
 
       </body>
 
-      <input hidden id='in' name="in" type="file">
+      <input hidden id='in' name="in" type="file" accept=".jpeg,.png,.gif,.bmp">
 
 
       <script>

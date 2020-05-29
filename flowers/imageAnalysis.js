@@ -1,15 +1,7 @@
-// Basic JavaScript function to submit an image to the Microsoft Cognitive Services API.
-// Note: to get this running, you need a valid subscription key. Also, make sure you
-// adapt the URL of the service to match the region where you created it (see the TODO comment).
-//
-// Microsoft tutorial:
-// https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/tutorials/javascript-tutorial
+document.getElementById("fimg").style.display = "none";
 
-// https://www.theflowerweb.com.au/wp-content/uploads/2019/01/single-rose.jpg
-// https://images.unsplash.com/photo-1561340928-b1504b04cf03?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60
-// https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/close-up-of-yellow-flowering-plant-royalty-free-image-1575667390.jpg?crop=1xw:0.84375xh;center,top&resize=980:*
-// https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/flowers-royalty-free-image-997959716-1548454745.jpg?crop=1xw:1xh;center,top&resize=980:*
-// https://www.ikea.com/au/en/images/products/smycka-artificial-flower__0903311_PE596728_S5.JPG
+$("#text").text("Upload an image of a flower to see what kind of flower it is. This returns 5 results from the image recognition program with the highest level of confidence. \n\n Click anywhere to close this message.");
+on();
 
 function readImage() {
     if ( this.files && this.files[0] ) {
@@ -35,6 +27,7 @@ function readImage() {
              canvas.height = imgHeight;
              canvas.width = imgWidth;
              ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight, 0,0, imgWidth, imgHeight);
+             document.getElementById("fimg").style.display = "block";
            };
         };
         FR.readAsDataURL( this.files[0] );
@@ -61,10 +54,6 @@ function off() {
 
 
 $(document).ready(function () {
-
-    //Step 1. Hook into the myFile input file change event
-
-
 
    var subKey = 'd73860db3f5c4ce0b22c77368c26cd54';
 
@@ -105,7 +94,6 @@ $(document).ready(function () {
     });
 
     processImage = function(binaryImage) {
-      //var uriBase = "https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/analyze";
       var uriBase = "https://flowers.cognitiveservices.azure.com/vision/v2.0/analyze";
       var params = {
           "visualFeatures": "Tags",
@@ -124,7 +112,7 @@ $(document).ready(function () {
             },
             contentType: "application/octet-stream",
             mime: "application/octet-stream",
-            data: makeblob(binaryImage, 'image/jpeg'),
+            data: makeblob(binaryImage, 'image/png'),
             cache: false,
             processData: false
 
@@ -134,14 +122,22 @@ $(document).ready(function () {
            var obj = JSON.parse(da);
            daa = JSON.stringify(obj, null, 2);
 
-           var res = obj.tags[0].name+"\n"+obj.tags[1].name+"\n"+ obj.tags[2].name+"\n"+ obj.tags[3].name+"\n"+ obj.tags[4].name;
+           var res = obj.tags[0].name+", "+obj.tags[1].name+", "+ obj.tags[2].name+", "+ obj.tags[3].name+", "+ obj.tags[4].name;
            console.log(res)
 
-           $("#text").text(res);
+           $("#text").text("This image might be: "+res);
            on();
 
            alert("Success");
          })
+
+         .fail(function(jqXHR, textStatus, errorThrown) {
+            var errorString = (errorThrown === "") ? "Error. " :
+                errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ? "" :
+                jQuery.parseJSON(jqXHR.responseText).message;
+            alert(errorString);
+        });
 
     }
 });
