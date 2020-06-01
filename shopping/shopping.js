@@ -1,15 +1,10 @@
-//it request permission in browser
-if (Notification.requestPermission(result => {
-
-})){}
-
-
 //bind components with UI
 
 let shoppingList = $('#shopping-list');
 let deleteAllButton = $('#delete-all-button');
 let addDividerForm = $('#add-divider-form');
 let addItemForm = $('#add-item-form');
+let addItemButton = $('#add-item');
 
 let addItemCategorySelect = $('#add-item-category');
 
@@ -35,6 +30,10 @@ let shoppingListState = [];
 
 if (cachedShoppingList) {
     shoppingListState = JSON.parse(cachedShoppingList);
+}
+
+if (shoppingListState.length === 0) {	
+    addItemButton.hide()	
 }
 
 //this cache tracks id after page reload
@@ -63,6 +62,7 @@ if (cachedIdState) {
 //handler for delete all button
 deleteAllButton.click(() => {
     shoppingListState = [];
+    addItemButton.hide()	
     localStorage.setItem('shopping-list', JSON.stringify(shoppingListState));
     renderComponents();
 });
@@ -111,6 +111,7 @@ addDividerForm.submit((ev) => {
             shoppingListState.push(newCategory);
             localStorage.setItem('shopping-list', JSON.stringify(shoppingListState));       //update state
             localStorage.setItem('id-state', JSON.stringify(idState));
+            addItemButton.show();
             renderComponents();                                                             //draw new state
         }
     }
@@ -202,6 +203,9 @@ const dividerComponent = (category) => {
 //delete category logic
 const deleteCategory = (categoryId) => {
     shoppingListState = shoppingListState.filter(category => category.id !== categoryId);
+     if (shoppingListState.length === 0) {	
+        addItemButton.hide()	
+    }
     localStorage.setItem('shopping-list', JSON.stringify(shoppingListState));
     renderComponents();
 }
