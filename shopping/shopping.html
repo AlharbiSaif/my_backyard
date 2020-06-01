@@ -6,14 +6,14 @@
 
         <!-- base -->
         <link rel="manifest" href="../manifest.json">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../img/apple-touch-icon-57x57.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../img/apple-touch-icon-144x144.png">
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../img/apple-touch-icon-60x60.png">
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../img/apple-touch-icon-120x120.png">
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../img/apple-touch-icon-76x76.png">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../img/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="../img/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="../img/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="../img/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="../img/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="../img/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="../img/apple-touch-icon-152x152.png">
         <link rel="icon" type="image/png" href="../img/favicon-196x196.png" sizes="196x196">
         <link rel="icon" type="image/png" href="../img/favicon-96x96.png" sizes="96x96">
         <link rel="icon" type="image/png" href="../img/favicon-32x32.png" sizes="32x32">
@@ -33,7 +33,8 @@
         <script src="../jquery.mobile-1.4.5.min.js"></script>
 
         <link rel="stylesheet" href="../style.css">
-
+        <meta name="theme-color" content="#777777">
+        
     </head>
 
 
@@ -49,11 +50,11 @@
                 <div class="inner-body">
                     <div id="add-buttons" class="add-btn">
                         <a href="#add-divider-screen" class="ui-btn divider" id="add-divider">
-                            <span>&#9997;DIVIDER</span>
+                            <span>CATEGORY</span>
                             <i class="fas fa-plus-circle"></i>
                         </a>
                         <a href="#add-item-screen" class="item ui-btn" id="add-item">
-                            <span class="arm">&#9997;ITEM</span>
+                            <span class="arm">ITEM</span>
                             <i class="fas fa-plus-circle"></i>
                         </a>
                     </div>
@@ -83,7 +84,7 @@
 
         <div data-role="page" id="add-divider-screen">
             <header data-role="header" data-theme="">
-                <h1>Add Divider</h1>
+                <h1>Add Category</h1>
                 <a href="#Main"
                    class="ui-btn ui-btn-inline ui-btn-icon-center  ui-shadow ui-corner-all  ui-icon-back ui-btn-icon-notext ui-btn-b"
                    data-theme="b">Back</a>
@@ -100,7 +101,7 @@
                                 id="add-divider-name"
                                 class="input-field"
                                 name="add-divider-name"
-                                placeholder="Divider name"
+                                placeholder="Category name"
                         />
                     </div>
                 </form>
@@ -122,7 +123,7 @@
                 <form action="#" id="add-item-form" class="item-form">
                     <div>
                         <div>
-                            <label for="add-item-category">Divider:</label>
+                            <label for="add-item-category">Category:</label>
                             <select
                                     id="add-item-category"
                                     name="add-item-category"
@@ -151,7 +152,7 @@
 
         <div data-role="page" id="edit-divider-screen">
             <header data-role="header" data-theme="">
-                <h1>Edit Divider</h1>
+                <h1>Edit Category</h1>
                 <a href="#Main"
                    class="ui-btn ui-btn-inline ui-btn-icon-center  ui-shadow ui-corner-all  ui-icon-back ui-btn-icon-notext ui-btn-b"
                    data-theme="b">Back</a>
