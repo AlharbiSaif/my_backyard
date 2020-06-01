@@ -24,22 +24,25 @@
     <link rel="icon" type="image/png" href="../img/favicon-128.png" sizes="128x128">
     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+    	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#db5945">
 
     <link rel="stylesheet" href="../css/themes/Try1.css" />
+       <link rel="stylesheet" href="./reminders.css">
     <link rel="stylesheet" href="../css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="../jquery.mobile.structure-1.4.5.min.css" />
     <script src="../jquery-1.11.1.min.js"></script>
     <script src="../jquery.mobile-1.4.5.min.js"></script>
   </head>
   <body>
-    <div data-role="page" id="Main">
+   <div data-role="page" id="Main">
       <header data-role="header" data-theme="a">
         <h1>Reminder</h1>
         <a onclick="window.location.href='../index.html';" class="ui-btn  ui-icon-home ui-btn-icon-notext">
           Home</a>
         <a href="#Add"
-           class="ui-btn ui-btn-inline ui-btn-icon-right  ui-shadow ui-corner-all  ui-icon-plus ui-btn-icon-notext ui-btn-c"
-           data-theme="c">Add</a>
+           class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-c add-button"
+           data-theme="f">Add Reminder</a>
       </header>
 
 
@@ -65,15 +68,22 @@
 
         <form id="add-form">
 
-          <select id="add-day" name="add-day">
-            <option value="Mon">Monday</option>
-            <option value="Tue">Tuesday</option>
-            <option value="Wed">Wednesday</option>
-            <option value="Thu">Thursday</option>
-            <option value="Fri">Friday</option>
-            <option value="Sat">Saturday</option>
-            <option value="Sun">Sunday</option>
-          </select>
+          <fieldset data-role="controlgroup" id="add-day">
+            <input type="checkbox" value="Mon" id="monday" class="custom"/>
+            <label for="monday">Monday</label>
+            <input type="checkbox" value="Tue" id="tuesday" class="custom"/>
+            <label for="tuesday">Tuesday</label>
+            <input type="checkbox" value="Wed" id="wednesday" class="custom" />
+            <label for="wednesday">Wednesday</label>
+            <input type="checkbox" value="Thu" id="thursday" class="custom" />
+            <label for="thursday">Thursday</label>
+            <input type="checkbox" value="Fri" id="friday" class="custom" />
+            <label for="friday">Friday</label>
+            <input type="checkbox" value="Sat" id="saturday" class="custom" />
+            <label for="saturday">Saturday</label>
+            <input type="checkbox" value="Sun" id="sunday" class="custom" />
+            <label for="sunday">Sunday</label>
+          </fieldset>
 
 
           <input type="radio" name="activity" id="watering" value="Watering" checked>
@@ -82,10 +92,14 @@
           <input type="radio" name="activity" id="weeding" value="Weeding">
           <label for="weeding">Weeding</label>
 
-          <div style="display: flex; justify-content: left">
-            <input type="text" value="00" id="hours" name="hours" min="0" maxlength="23"/>
+          <div style="display: flex; justify-content: left; align-items: center">
+            <input type="text" value="01" id="hours" name="hours" min="1" max="12"/>
             <span style="color: black; display: flex; align-items: center">:</span>
             <input type="text" value="00" id="minutes" name="minutes" min="0" max="60"/>
+            <select id="add-zone" name="add-zone">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
           </div>
         </form>
       </article>
@@ -110,15 +124,24 @@
 
           <input type="hidden" id="edit-id" name="id">
 
-          <select id="edit-day" name="day">
-            <option value="Mon">Monday</option>
-            <option value="Tue">Tuesday</option>
-            <option value="Wed">Wednesday</option>
-            <option value="Thu">Thursday</option>
-            <option value="Fri">Friday</option>
-            <option value="Sat">Saturday</option>
-            <option value="Sun">Sunday</option>
-          </select>
+
+
+          <fieldset data-role="controlgroup" id="edit-day">
+            <input type="radio" value="Mon" id="edit-monday" class="custom" name="edit-day"/>
+            <label for="edit-monday">Monday</label>
+            <input type="radio" value="Tue" id="edit-tuesday" class="custom" name="edit-day"/>
+            <label for="edit-tuesday">Tuesday</label>
+            <input type="radio" value="Wed" id="edit-wednesday" class="custom" name="edit-day"/>
+            <label for="edit-wednesday">Wednesday</label>
+            <input type="radio" value="Thu" id="edit-thursday" class="custom" name="edit-day"/>
+            <label for="edit-thursday">Thursday</label>
+            <input type="radio" value="Fri" id="edit-friday" class="custom" name="edit-day"/>
+            <label for="edit-friday">Friday</label>
+            <input type="radio" value="Sat" id="edit-saturday" class="custom" name="edit-day"/>
+            <label for="edit-saturday">Saturday</label>
+            <input type="radio" value="Sun" id="edit-sunday" class="custom" name="edit-day"/>
+            <label for="edit-sunday">Sunday</label>
+          </fieldset>
 
 
           <input type="radio" name="edit-activity" id="edit-watering" value="Watering">
@@ -127,9 +150,13 @@
           <label for="edit-weeding">Weeding</label>
 
           <div style="display: flex; justify-content: left">
-            <input type="text" value="00" id="edit-hours" name="edit-hours" min="0" maxlength="23"/>
+            <input type="text" value="00" id="edit-hours" name="edit-hours" min="1" max="12"/>
             <span style="color: black; display: flex; align-items: center">:</span>
             <input type="text" value="00" id="edit-minutes" name="edit-minutes" min="0" max="60"/>
+            <select id="edit-zone" name="edit-zone">
+              <option value="AM">AM</option>
+              <option value="PM">PM</option>
+            </select>
           </div>
 
         </form>
