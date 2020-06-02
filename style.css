@@ -11,17 +11,16 @@ html {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  margin-bottom: -3vh;
 }
 
 /* buttons ----------------------------------------------*/
-.btn .ico {
-  position: sticky;
+.ico {
+  position: relative;
   width: 5vh;
   float: left;
 }
-.btn .arrow {
-  position: sticky;
+.arrow {
+  position: relative;
   width: 5vh;
   float: right;
 }
@@ -32,20 +31,28 @@ html {
   margin-right: auto;
   display: block;
   width: 95%;
-  height: 12vh;
-  margin-top: 2vh;
-  color: #548235;
-  padding: 1em;
+  height: 10vh;
+  margin-top: 1vh;
   border: 1px solid;
   border-color: #548235;
   cursor: pointer;
   opacity: 0.9;
   border-radius: 0.5em;
   font-family: 'Montserrat', sans-serif;
-  font-size: 4vh;
+  font-size: 3vh;
+  color: #548235;
   font-weight: bold;
   text-align:center;
   background-color: white;
+
+}
+
+.btn{
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  color: #548235;
+
 }
 
 .btn button:hover {opacity: 1;}
