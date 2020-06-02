@@ -3,8 +3,8 @@
   "name": "My Backyard",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#9199be",
-  "theme_color": "#54678f",
+  "background_color": "#548235",
+  "theme_color": "#548235",
   "icons": [
     {
      "src": "./img/apple-touch-icon-57x57.png",

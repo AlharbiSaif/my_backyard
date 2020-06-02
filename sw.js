@@ -7,9 +7,9 @@ const OFFLINE_CACHE = `${PREFIX}-${HASH}`;
 self.addEventListener('install', function(event) {
 	event.waitUntil(
 		caches.open(OFFLINE_CACHE).then(function(cache) {
-			
-			
-			
+
+
+
 			return cache.addAll([
 				'./',
 				"./index.html",
@@ -40,8 +40,11 @@ self.addEventListener('install', function(event) {
 				"./jquery.mobile-1.4.5.min.map",
 				"./css/themes/images/ajax-loader.gif",
 				"./weather/weather.html",
-               			"./weather/weather.js",
-                                "./weather/weather.css"	
+				"./weather/weather.js",
+				"./weather/weather.css",
+				"./wildlife/gallery.html",
+				"./wildlife/record.html",
+				"./wildlife/video.js",	
 			]);
 		})
 	);
@@ -90,7 +93,7 @@ self.addEventListener('fetch', function(event) {
 
 });
 
-//Saif 
+//Saif
 
 self.addEventListener('activate', function(event) {
 	// Delete old asset caches.
