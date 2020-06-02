@@ -40,7 +40,7 @@ This feature is unfinished. It was intended to be used as a video gallery in whi
 
 #### Flowers
 
-This feature is an inage recognition feature intended to be used in people's gardens. It takes advantage of Microsoft Azure's image recognition service and it's API. to use:
+This feature is an image recognition feature intended to be used in people's gardens to determine the species of a flower in an image file. It takes advantage of Microsoft Azure's image recognition service and it's API. to use:
 1. Click the upload button and choose an image of a flower, or take an image using the camera option in the file chooser dialogue.
 2. Wait for the success notification (usually around 1 second)
 3. An image is displayed on the screen with an overlay containing the 5 top results from the image recognition service (top 5 results are based on object tags with the highest level of confidence).
