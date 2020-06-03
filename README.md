@@ -47,7 +47,8 @@ This feature is an image recognition feature intended to be used in people's gar
 
 #### Reminders
 
-This feature allows users to recieve push notifications alerting them to either water or weed their garden. - To add a reminder, click the button in the top right labeled "Add Reminder". Choose which days you would like the reminder to notify you, choose the type of reminder (watering or weeding). Finally choose the time that reminder is to be pushed to your devices notification feature. Multiple reminders can be added.
+This feature allows users to recieve push notifications alerting them to either water or weed their garden. 
+- To add a reminder, click the button in the top right labeled "Add Reminder". Choose which days you would like the reminder to notify you, choose the type of reminder (watering or weeding). Finally choose the time that reminder is to be pushed to your devices notification feature. Multiple reminders can be added.
 - To remove a reminder press the small "x" button on the reminder.
 - To edit a reminder press the small icon that resembles a pencil on the reminder.
 
